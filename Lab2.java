@@ -1,7 +1,7 @@
 
 // Sakina Ghafoor
 // Lab 2 Assignment
-// COSC 20203 Rinewalt 055
+// COSC
 
 import javax.swing.*;
 import java.awt.event.*;
