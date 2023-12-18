@@ -1,5 +1,7 @@
 # java-projects
 
-assignments from my courses
+assignments from courses
+  - Techniques in Programming
+  - Data Structures 
 
 HR --> HackerRank assignments
