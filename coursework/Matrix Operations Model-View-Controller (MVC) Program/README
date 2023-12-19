@@ -1,0 +1,48 @@
+~~ Matrix Operations Model-View-Controller (MVC) Program ~~
+
+ * * * * * * * * * * * * * * * * * * * * *
+ * Sakina Ghafoor 			                 *
+ * Lab 1 Assignment Fall 2023   	       *
+ * Techniques in Programming             *
+ * * * * * * * * * * * * * * * * * * * * * 
+
+
+ ~Introduction~
+This is a simple Java MVC (Model-View-Controller) program that allows users to perform basic matrix operations such as addition, subtraction, 
+multiplication, and transposition on two matrices. The program provides a graphical user interface (GUI) for easy interaction.
+
+
+
+ ~Features~
+- Matrix Creation: Users can create two matrices with custom dimensions.
+- Matrix Operations: The program allows users to perform the following operations on matrices:
+	- Transpose: Transpose a matrix.
+	- Addition: Add two matrices.
+	- Subtraction: Subtract one matrix from another.
+	- Multiplication: Multiply two matrices.
+- Matrix Input: Matrices can be manually inputted or read from a file.
+- Matrix Output: The program displays the result matrix and allows users to save it to a file.
+- Error Handling: The program provides error messages for invalid inputs or incompatible matrix dimensions.
+
+
+
+ ~Instructions~
+Launch the program.
+
+Create Matrices:
+	Enter the dimensions of the matrices (number of rows and columns) and click "Create Matrices."
+
+Input Matrices:
+	Manually input matrix values into the displayed matrices.
+
+Perform Matrix Operations:
+	Select an operation from the dropdown menu (Transpose, Add, Subtract, Multiply).
+	Click the "Execute" button to perform the selected operation.
+
+View and Save Result:
+	The result matrix will be displayed in the "Result Matrix" window. 
+	You can save the result matrix to a file as an object by using the "Save Result Matrix" button.
+
+Additional Actions:
+	You can read matrices from a file, open existing matrices, clear matrices, and reset the program as needed.
+
