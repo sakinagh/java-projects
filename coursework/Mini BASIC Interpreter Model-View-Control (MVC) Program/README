@@ -1,0 +1,67 @@
+ ~~ Mini BASIC Interpreter Model-View-Control (MVC) Program ~~
+
+ * * * * * * * * * * * * * * * * * * * * *
+ * Sakina Ghafoor 			 *
+ * Lab 3 Assignment Fall 2023   	 *
+ * Techniques in Programming             *
+ * * * * * * * * * * * * * * * * * * * * * 
+
+
+ ~Introduction~
+The Mini BASIC Interpreter Model-View-Control (MVC) program is a simple implementation of a BASIC interpreter that allows users to 
+read, save, execute, and reset BASIC programs. The program follows the Model-View-Controller (MVC) architectural pattern, which separates 
+the application's concerns into distinct components for improved maintainability and flexibility.
+
+
+
+ ~Features~
+The application consists of three main components:
+
+Model: 
+	The Model component handles the evaluation of BASIC expressions and assignments. It maintains a symbol table and 
+	evaluates expressions according to the basic rules of the language.
+
+View: 
+	The View component offers a graphical user interface (GUI) for the program. Users can interact with the interpreter 
+	through this interface, where they can load programs, save programs, execute them, and view the output.
+
+Control: 
+	The Control component acts as the bridge between the Model and View. It handles user interactions and invokes 
+	methods in the Model to execute BASIC programs.
+
+
+
+ ~Instructions~
+1. Read a Program: Click the "read" button to load a BASIC program from a text file. 
+	The program code will be displayed in the text area. Any errors encountered by 
+	the program or typos found in program code will also be displayed in the text 
+	area to notify the user. 
+
+2. Execute the Program: Click the "run" button to execute the loaded BASIC program. The 
+	program's output will be displayed in the console window.
+
+3. Save the Program: Click the "save" button to save the loaded program to a text file. The 
+	loaded program on the display interface can be edited by the user if they want to make 
+	changes to the BASIC program. After making changes, the user can save the contents to a 
+	new file and the new file can be read by the program. 
+
+4. Reset the Program: Click the "reset" button to clear the program, console output, and error 
+	messages for a new session.
+
+
+An example of BASIC program code that works as input for the Interpreter is shown below: 
+
+05 // Program File STARTS Here
+10 a = 89 + 1
+20 c = 90 + a
+40 print c
+43 // comment
+45 a = a + 1
+55 print 1000
+70 print t
+75 print a
+78 if( a = 91 ) goto 45
+80 d = 45 + 78 - a
+90 print d
+100 END
+110 // Program File ENDS Here
