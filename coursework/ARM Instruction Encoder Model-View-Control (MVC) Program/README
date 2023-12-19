@@ -1,0 +1,52 @@
+ ~~ ARM Instruction Encoder Model-View-Control (MVC) Program ~~
+
+ * * * * * * * * * * * * * * * * * * * * *
+ * Sakina Ghafoor 			 *
+ * Lab 2 Assignment Fall 2023   	 *
+ * Techniques in Programming             *
+ * * * * * * * * * * * * * * * * * * * * * 
+
+
+ ~Introduction~
+This is a simple Java application that implements the Model-View-Control (MVC) architecture to encode, decode, and 
+display ARM assembly instructions in binary and hexadecimal formats. The application allows you to input assembly language 
+instructions, encode them into binary, and decode binary or hexadecimal representations back to assembly language.
+
+
+
+ ~Features~
+The application consists of three main components:
+
+Model: 
+	The Model class represents the underlying data and business logic. It provides methods for converting between 
+	binary and hexadecimal representations of ARM instructions. The Model class is also serializable.
+
+View: 
+	The View class extends JFrame and provides the graphical user interface (GUI) for the application. It includes 
+	input fields for entering assembly language instructions, buttons for encoding and decoding, and fields for 
+	displaying binary and hexadecimal instructions.
+
+Control: 
+	The Control class extends the View class and serves as the controller in the MVC pattern. It handles user 
+	interactions, such as button clicks, and communicates with the Model to perform encoding and decoding operations.
+
+
+
+ ~Instructions~
+1. Launch the program.
+
+2. Enter an ARM assembly language instruction in the "Assembly Language" input field. Input must first include the op code 
+	being 3 characters long. Then, followed by a space the 3 registers to be utilized must be listed only separated 
+	by commas. One example of assembly instruction input can be "ADD r0,r1,r2". 
+
+3. Click the "Encode" button to convert the assembly instruction to binary and display it in the "Binary Instruction" field. 
+	The hexadecimal representation will be displayed in the "Hex Instruction" field.
+
+4. To decode a binary instruction, enter the binary string (32 digits) in the "Binary Instruction" field and click the 
+	"Decode Binary" button. The corresponding assembly instruction will be displayed in the "Assembly Language" 
+	field. The corresponding hex instruction will be displayed in the "Hex Instruction" field. 
+
+5. To decode a hexadecimal instruction, enter the hexadecimal string (either 4 or 8 digits) in the "Hex Instruction" 
+	field and click the "Decode Hex" button. The corresponding assembly instruction will be displayed in the "Assembly 
+	Language" field. The corresponding binary instruction will be displayed in the "Binary Instruction" field. 
+
