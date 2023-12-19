@@ -4,4 +4,6 @@ assignments from courses
   - Techniques in Programming
   - Data Structures 
 
-HR --> HackerRank assignments
+HackerRank assignments
+  - basic to intermediate
+  - problem solving
