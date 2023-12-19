@@ -1,0 +1,52 @@
+
+public class fibonacci {
+	
+	
+	
+	public static long iterateFib(int n) {
+	    if (n <= 0) {
+	        return 0;
+	    }
+	    if (n <= 2) {
+	        return 1;
+	    }
+	    
+	    long fib1 = 1;
+	    long fib2 = 1;
+	    long result = 0;
+	    
+	    for (int i = 3; i <= n; i++) {
+	        result = fib1 + fib2;
+	        fib1 = fib2;
+	        fib2 = result;
+	    }
+	    
+	    return result;
+	}
+ 
+	
+	public static long recursiveFib(int n) {
+	    if (n <= 0) {
+	        return 0;
+	    }
+	    if (n <= 2) {
+	        return 1;
+	    }
+	    
+	    return recursiveFib(n - 1) + recursiveFib(n - 2);
+	}
+
+	public static void main(String[] args) {
+		int n = 4;
+		
+		long i;
+		long r;
+		i = iterateFib(n);
+		r = recursiveFib(n);
+		
+		System.out.println("iterative is: " + i);
+		System.out.println("recursive is: " + r);
+	}
+	   
+	
+}
