@@ -1,0 +1,75 @@
+import java.util.Hashtable;
+
+public class ExpressionEval {
+	
+	public static double evaluate(String expression, Hashtable<String, Double> variables) {
+	        String[] tokens = expression.split(" ");
+	        double operand1, operand2;
+	        double result = 0.0;
+
+	        if (tokens.length != 3) {
+	            throw new IllegalArgumentException("Invalid expression format");
+	        }
+
+	        try {
+	            operand1 = Double.parseDouble(tokens[0]);
+	        } catch (NumberFormatException e) {
+	            if (variables.containsKey(tokens[0])) {
+	                operand1 = variables.get(tokens[0]);
+	            } else {
+	                throw new IllegalArgumentException("Variable " + tokens[0] + " not found in the Hashtable");
+	            }
+	        }
+
+	        try {
+	            operand2 = Double.parseDouble(tokens[2]);
+	        } catch (NumberFormatException e) {
+	            if (variables.containsKey(tokens[2])) {
+	                operand2 = variables.get(tokens[2]);
+	            } else {
+	                throw new IllegalArgumentException("Variable " + tokens[2] + " not found in the Hashtable");
+	            }
+	        }
+
+	        if (tokens[1].equals("+")) {
+	            result = operand1 + operand2;
+	        } else if (tokens[1].equals("-")) {
+	            result = operand1 - operand2;
+	        } else if (tokens[1].equals("*")) {
+	            result = operand1 * operand2;
+	        } else {
+	            throw new IllegalArgumentException("Invalid operator: " + tokens[1]);
+	        }
+
+	        return result;
+	    }
+
+	    public static void main(String[] args) {
+	        Hashtable<String, Double> variables = new Hashtable<>();
+	        variables.put("a", 3.0);
+	        variables.put("b", 5.0);
+
+	        String expression1 = "35 + b";
+	        String expression2 = "7 * 56";
+	        String expression3 = "2 - 9";
+
+	        double result1 = evaluate(expression1, variables);
+	        double result2 = evaluate(expression2, variables);
+	        double result3 = evaluate(expression3, variables);
+
+	        System.out.println("The tested expressions are...");
+	        System.out.println(expression1);
+	        System.out.println(expression2);
+	        System.out.println(expression3);
+	        
+	        System.out.println("The results of these expressions are...");
+	        System.out.println(result1);
+	        System.out.println(result2);
+	        System.out.println(result3);
+	    }
+	
+
+	
+	
+
+}
