@@ -1,0 +1,45 @@
+
+public class Encryption {
+
+	    private int key;
+
+	    public Encryption(int key) {
+	        this.key = key;
+	    }
+
+	    public String encrypt(String text) {
+	        StringBuilder encryptedText = new StringBuilder();
+
+	        for (char character : text.toCharArray()) {
+	            if (Character.isLetter(character)) {
+	                char base = Character.isLowerCase(character) ? 'a' : 'A';
+	                char encryptedChar = (char) (base + (character - base + key) % 26);
+	                encryptedText.append(encryptedChar);
+	            } else {
+	                encryptedText.append(character);
+	            }
+	        }
+
+	        return encryptedText.toString();
+	    }
+
+	    public static void main(String[] args) {
+	        int key = 3; // Change the key to your desired value
+	        Encryption encoder = new Encryption(key);
+
+	        String originalText = "a b c d e ";
+	        String encryptedText = encoder.encrypt(originalText);
+
+	        System.out.println(" " + originalText);
+	        System.out.println("now encrypting to...");
+	        System.out.println(" " + encryptedText);
+	    }
+
+
+
+
+
+}
+
+
+	
