@@ -1,0 +1,22 @@
+1 Description
+This program implements a bounded stack interface. Bounded stack is a stack with pre-defined
+capacity. This implements the interface in two ways — array and list.
+
+
+2 Class Design
+• BDDStack.java   Interface includes primary and secondary methods.
+
+• AbstractStack.java   This is an abstract class. The class “implements” BDDStack interface.
+Implements only the secondary methods defined in BDDStack interface.
+
+• ArrayStack.java   This is a concrete class. The class “extends” AbstractStack class. Uses
+an array to implement only the primary methods defined in BDDStack interface. In
+addition, the class satisfies the Iterable interface, and the traversal starts from the
+bottom of the stack to the top. It is needed to create a nested class that “implements”
+Iterator interface.
+
+• ListStack.java   This is the other concrete class. The class also “extends” AbstractStack
+class. Uses a Java built-in ArrayList to implement only the primary methods
+defined in BDDStack interface. In addition, the class satisfies Iterable interface, and the
+traversal should start from the bottom of the stack to the top. There is no need for 
+nested classes.
