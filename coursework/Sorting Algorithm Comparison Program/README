@@ -1,0 +1,19 @@
+A program that compares five sorting algorithms: selection sort, insertion sort,
+heapsort, merge sort, and quicksort. The program will be sorting words/strings by lexicographic
+order.
+For each algorithm, the program will count the number of comparisons taken, and record time
+spent in milliseconds. Only direct comparisons among words are counted. 
+
+Standard input and output will be used. Here is an example of the output. (The results are fictitious.)
+Algorithm       | Comparisons | Time (Milliseconds)
+================+=============+=====================
+Selection Sort  | 123456789   | 1234.56789
+----------------+-------------+---------------------
+Insertion Sort  | 123456789   | 1234.56789
+----------------+-------------+---------------------
+Heapsort        | 123456789   | 1234.56789
+----------------+-------------+---------------------
+Merge Sort      | 123456789   | 1234.56789
+----------------+-------------+---------------------
+Quicksort       | 123456789   | 1234.56789
+----------------+-------------+---------------------
