@@ -2,7 +2,7 @@
 
 assignments from courses
   - Techniques in Programming
-  - Data Structures 
+  - Data Structures & Algorithms
 
 HackerRank assignments
   - basic to intermediate
