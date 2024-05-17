@@ -1,0 +1,98 @@
+1 Background
+The program will manage polynomials in three variables (x, y, and z) with non-zero integer
+coefficients, and non-negative integer exponents. Three variable polynomials are of the
+following form:
+
+p(x, y, z) = c1(x^A1)(y^B1)(z^C1) + ... + cn(x^An)(y^Bn)(z^Cn)
+
+where ci is the coefficient, and Ai, Bi, and Ci represent the exponents of variables.
+
+To simplify the project, we only deal with polynomials in the above form, under the following
+assumptions.
+1. We assume that every term in a polynomial follows the xyz sequence. We only deal with a term
+like (5x^6)(y^3)(z^2), and we won’t deal with a term like (5y^3)(x^6)(z^2).
+
+2. We assume that a coefficient can only occur at the beginning of a term. We only deal with a
+term like (6x^8)(y^4)(z^5). We won’t deal with a term like 3x^8 · (2y^4)(z^5).
+
+3. We assume that no term in a polynomial contains a division operator. We won’t deal with a
+term like 4x^3/((y^7)(z^5)).
+
+
+2 Requirements
+  2.1 Input Representation of Polynomials
+The purpose of the program is to interact with users by inserting, deleting, and searching named
+polynomials. By following the assumptions defined in Section 1, we can simplify how a polynomial
+can be input into the program. In a polynomial, each term is represented by four integers separated
+by commas:
+• coefficient
+• exponent for variable x
+• exponent for variable y
+• exponent for variable z
+and multiple terms are separated by space characters. For example, if the polynomial is
+
+A = (6x^9)(y^6)(z^3) + (5x^4)(z^5) − 3
+
+its input should be
+
+A 6,9,6,3 5,4,0,5 -3,0,0,0
+
+  2.2 Output Representation of Polynomials
+The program output of polynomials is similar to the standard mathematical form with simplifications.
+For example, if the polynomial is
+
+B = −2x^3(y^7)(z^2) + (x^4)(z^5) − 8y^3(z) + 9
+
+its output should be
+
+B = - 2(x^3)(y^7)(z^2) + (x^4)(z^5) - 8(y^3)(z) + 9
+
+To ensure correct output formats, please attend to the following items.
+    1. Pay attention to the usage of parentheses in the above example.
+    2. Pay attention to the spaces around operators in the above example.
+    3. If the coefficient of the first term is positive, do not display the plus sign for the first term.
+For example, B = 2(x^3)(y^7)(z^2) + (x^4)(z^5) - 8(y^3)(z) + 9
+    4. If the coefficient of a term is 1, do not display the coefficient. The exception is that if the
+exponents of x, y, and z are all 0, and the coefficient is 1, 1 must be displayed for this term.
+For example, B = - 2(x^3)(y^7)(z^2) + (x^4)(z^5) - 8(y^3)(z) + 1
+    5. If the coefficient of a term is −1, only display the negative sign for the coefficient. The
+exception is that if the exponents of x, y, and z are all 0, and the coefficient is −1, −1 must
+be displayed for this term. For example,
+B = - 2(x^3)(y^7)(z^2) - (x^4)(z^5) - 8(y^3)(z) - 1
+    6. If the exponent of a variable is 0, do not display this variable.
+    7. If the exponent of a variable is 1, just display the variable itself, and keep the parentheses.
+
+  2.3 Polynomial Management Operations
+The program maintains a list of named polynomials. The management operations are as
+follows.
+
+INSERT Insert a new polynomial into the list. If the insert operation is successful, output the
+polynomial. The insert operation can fail if there is already a polynomial in the list with
+the same name. In the case of an insertion failure, display the message POLYNOMIAL <name>
+ALREADY INSERTED.
+
+DELETE Delete an existing named polynomial from the list. If the delete operation is successful,
+display the message POLYNOMIAL <name> SUCCESSFULLY DELETED. If the named polynomial
+does not exist, display the message POLYNOMIAL <name> DOES NOT EXIST.
+
+SEARCH Search for a named polynomial in the list. If it is found in the list, output the polynomial. 
+If the polynomial does not exist, display the message POLYNOMIAL <name> DOES NOT EXIST.
+
+QUIT This command makes the program properly exit. The QUIT command should remove all
+the polynomials from the list, and then exit the program.
+
+To review, the following examples are provided.
+INSERT A 3,2,0,0 5,1,1,0 -8,0,2,0 4,1,0,0 -3,0,1,0 12,0,0,0
+A = 3(x^2) + 5(x)(y) - 8(y^2) + 4(x) - 3(y) + 12
+INSERT B 1,3,0,0 6,0,2,0 -15,1,0,0 11,0,0,0
+B = (x^3) + 6(y^2) - 15(x) + 11
+INSERT A 2,1,0,0 3,0,1,0 -5,0,0,0
+POLYNOMIAL A ALREADY INSERTED
+DELETE B
+POLYNOMIAL B SUCCESSFULLY DELETED
+DELETE C
+POLYNOMIAL C DOES NOT EXIST
+SEARCH A
+A = 3(x^2) + 5(x)(y) - 8(y^2) + 4(x) - 3(y) + 12
+SEARCH B
+POLYNOMIAL B DOES NOT EXIST
