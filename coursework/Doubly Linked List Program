@@ -1,0 +1,334 @@
+//****************************************************************
+//
+// DLList Class
+//
+//****************************************************************
+class DLList<T> {
+
+	//****************************************************************
+	//
+	// DLListNode nested class
+	//
+	//****************************************************************
+	private static class DLListNode<T> {
+		//****************************************************************
+		// DLList node private data members
+		//****************************************************************
+		private T data;
+		private DLListNode<T> prev;
+		private DLListNode<T> next;
+
+		//****************************************************************
+		// Constructor
+		//****************************************************************
+		DLListNode(T item, DLListNode<T> p, DLListNode<T> n) {
+			this.data = item;
+			this.prev = p;
+			this.next = n;
+		}
+
+		//****************************************************************
+		// Get element.
+		//****************************************************************
+		T getElement() {
+			return this.data;
+		}
+
+		//****************************************************************
+		// Set element.
+		//****************************************************************
+		void setElement(T item) {
+			this.data = item;
+		}
+
+		//****************************************************************
+		// Get previous.
+		//****************************************************************
+		DLListNode<T> getPrev() {
+			return this.prev;
+		}
+		
+		//****************************************************************
+		// Set previous.
+		//****************************************************************
+		void setPrev(DLListNode<T> node) {
+			this.prev = node;
+		}
+
+		//****************************************************************
+		// Get Next.
+		//****************************************************************
+		DLListNode<T> getNext() {
+			return this.next;
+		}
+
+		//****************************************************************
+		// Set Next.
+		//****************************************************************
+		void setNext(DLListNode<T> node) {
+			this.next = node;
+		}
+	}
+
+	//****************************************************************
+	// DLList private data members
+	//****************************************************************
+	private DLListNode<T> header;
+	private DLListNode<T> trailer;
+	//****************************************************************
+	// !!!IMPORTANT!!!
+	// Node current acts as an iterator.
+	// We define that a node with non-null data field is a real node.
+	// Node current should always point to a real node if there is
+	// at least one real node in the list.
+	// Otherwise, node current is null.
+	//****************************************************************
+	private DLListNode<T> current;
+	private int size = 0;
+
+	//****************************************************************
+	// Default constructor
+	//****************************************************************
+	DLList() {
+		// Create dummy header and trailer nodes to simplify boundary cases
+		header = new DLListNode<>(null, null, null);
+        trailer = new DLListNode<>(null, header, null);
+        header.setNext(trailer);
+	}
+
+	//****************************************************************
+	// Construct a list by shallow copying an existing list.
+	// Set node current of the new list to the first node if the list 
+	// is not empty.
+	// Difference between shallow copy and deep copy:
+	// www.geeksforgeeks.org/copy-python-deep-copy-shallow-copy
+	//****************************************************************
+	DLList(DLList<T> other) {
+		// Initialize this list
+		this();
+		// Iterate through the nodes of the other list and copy their elements
+		DLListNode<T> node = other.header.getNext();
+        while (node != other.trailer) {
+            insertLast(node.getElement());
+            node = node.getNext();
+        }
+	}
+
+	//****************************************************************
+	// Delete all the nodes in the list.
+	//****************************************************************
+	void clear() {
+		header.setNext(trailer);
+        trailer.setPrev(header);
+        current = null;
+        size = 0;
+	}
+
+	//****************************************************************
+	// Return the number of nodes in the list.
+	//****************************************************************
+	int size() {
+		return size;
+	}
+
+	//****************************************************************
+	// Return whether the list is empty.
+	//****************************************************************
+	boolean isEmpty() {
+		return size==0;
+	}
+
+	//****************************************************************
+	// Return whether node current points to the first node.
+	//****************************************************************
+	boolean atFirst() {
+		return current == header.getNext();
+	}
+
+	//****************************************************************
+	// Return whether node current points to the last node.
+	//****************************************************************
+	boolean atLast() {
+		return current == trailer.getPrev();
+	}
+
+	//****************************************************************
+	// Set node current to the first node, and return true.
+	// Or return false if the list is empty.
+	//****************************************************************
+	boolean first() {
+		if(isEmpty()) return false;
+		current = header.getNext();
+		return true;
+	}
+
+	//****************************************************************
+	// Set node current to the last node, and return true.
+	// Or return false if the list is empty.
+	//****************************************************************
+	boolean last() {
+		if(isEmpty()) return false;
+		current = trailer.getPrev();
+		return true;
+	}
+	
+	//****************************************************************
+	// Set node current to its next node, and return true.
+	// Or return false if no such node.
+	//****************************************************************
+	boolean next() {
+		if(current != trailer.getPrev()) {
+			current = current.getNext();
+			return true;
+		}
+		return false;
+	}
+
+	//****************************************************************
+	// Set node current to its previous node, and return true.
+	// Or return false if no such node.
+	//****************************************************************
+	boolean previous() {
+		if(current != header.getNext()) {
+			current = current.getPrev();
+			return true;
+		}
+		return false;
+	}
+
+	//****************************************************************
+	// The index of the first real node is 0.
+	// Set node current to the node at the specified index, and return
+	// true.
+	// Or return false if no such node.
+	//****************************************************************
+	boolean seek(int loc) {
+		// Check if the index is out of bounds
+		if(loc<0 || loc >= size) return false;
+		// If the index is in the first half of the list
+		if(loc<size/2) {
+			// Start searching from the node after the header
+			current = header.getNext();
+			// Iterate through the list until reaching the desired index
+			for(int i=0; i<loc; i++) {
+				current = current.getNext();
+			}
+		} else {
+			// If the index is in the second half of the list, start searching from the trailer node
+			current = trailer;
+			// Iterate backwards through the list until reaching the desired index
+			for(int i=size; i>loc; i--) {
+				current = current.getPrev();
+			}
+		}
+		// Return true to indicate successful seeking
+		return true;
+	}
+
+	//****************************************************************
+	// Return the content of node current.
+	// Or return null if the list is empty.
+	//****************************************************************
+	T dataRead() {
+		if(isEmpty()) return null;
+		return current.getElement();
+	}
+	
+	//****************************************************************
+	// Rewrite the content of node current if the list is not empty.
+	//****************************************************************
+	void dataWrite(T item) {
+		if(!isEmpty()) current.setElement(item);
+	}
+	
+	//****************************************************************
+	// Insert a new node to the front of the list, and set node
+	// current to the new node.
+	//****************************************************************
+	void insertFirst(T item) {
+		DLListNode<T> newestNext = header.getNext();
+		DLListNode<T> newest = new DLListNode<>(item, header, newestNext);
+		newestNext.setPrev(newest);
+		header.setNext(newest);
+		current = newest;
+		size++;
+		
+	}
+
+	//****************************************************************
+	// Insert a new node to the end of the list, and set node current
+	// to the new node.
+	//****************************************************************
+	void insertLast(T item) {
+		DLListNode<T> newestPrev = trailer.getPrev();
+		DLListNode<T> newest = new DLListNode<>(item, newestPrev, trailer);
+		newestPrev.setNext(newest);
+		trailer.setPrev(newest);
+		current = newest;
+		size++;
+	}
+    
+	//****************************************************************
+	// Insert a new node before where node current points to if the
+	// list is not empty; or insert a new node if the list is empty.
+	// Set node current to the new node.
+	//****************************************************************
+	void insertAtCurrent(T item) {
+		if(isEmpty() || current == header) {
+			insertFirst(item);
+			return;
+		}
+		DLListNode<T> currentPrev = current.getPrev();
+		DLListNode<T> newest = new DLListNode<>(item, currentPrev, current);
+		currentPrev.setNext(newest);
+		current.setPrev(newest);
+		current = newest;
+		size++;
+	}
+
+	//****************************************************************
+	// Delete the first node in the list if the list is not empty.
+	// Set node current to the new first node; or set node current to
+	// null if the list becomes empty.
+	//****************************************************************
+	void deleteFirst() {
+		if(!isEmpty()) {
+			header.setNext(header.getNext().getNext());
+            header.getNext().setPrev(header);
+            if (current == header.getNext().getPrev())
+                current = header.getNext();
+            size--;
+		}
+	}
+
+	//****************************************************************
+	// Delete the last node in the list if the list is not empty.
+	// Set node current to the new last node; or set node current to
+	// null if the list becomes empty.
+	//****************************************************************
+	void deleteLast() {
+		if (!isEmpty()) {
+            trailer.setPrev(trailer.getPrev().getPrev());
+            trailer.getPrev().setNext(trailer);
+            if (current == trailer.getPrev().getNext())
+                current = trailer.getPrev();
+            size--;
+        }
+	}
+
+	//****************************************************************
+	// Delete the node where node current points to if the list is not
+	// empty.
+	// Set node current to its next node; or set node current to its
+	// previous node if node current was at the end of the list; or
+	// set node current to null if the list becomes empty.
+	//****************************************************************
+	void deleteAtCurrent() {
+		if(!isEmpty() && current != header && current != trailer) {
+			current.getPrev().setNext(current.getNext());
+            current.getNext().setPrev(current.getPrev());
+            current = current.getNext();
+            size--;
+		}
+	}
+}
