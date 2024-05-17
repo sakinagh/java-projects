@@ -4,7 +4,11 @@ order.
 For each algorithm, the program will count the number of comparisons taken, and record time
 spent in milliseconds. Only direct comparisons among words are counted. 
 
-Standard input and output will be used. Here is an example of the output. (The results are fictitious.)
+Standard input and output will be used. 
+The program accepts keyboard input. The input format of this program is that the first line 
+will be an integer indicating the number of words to be sorted. Then, beginning from the second 
+line, words are listed, and each line only contains one word.
+Here is an example of the output. (The results are fictitious.)
 Algorithm       | Comparisons | Time (Milliseconds)
 ================+=============+=====================
 Selection Sort  | 123456789   | 1234.56789
