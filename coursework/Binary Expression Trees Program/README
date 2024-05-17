@@ -1,0 +1,16 @@
+Input
+The program will read expressions (Strings) from standard input. There will be one expression
+per line. Each line will have a special character designating the type of the expression. This special
+character will be the first character of the input line.
+1. ‘!’ denotes a prefix expression. Example: ! + - a * b c / d e
+2. ‘@’ denotes a postfix expression. Example: @ a b c * - d e / +
+
+Output
+For each input expression, immediately output the following:
+1. Prefix expression if the input is in postfix notation OR postfix expression if the input is in
+prefix notation. 
+2. Graphical binary tree. Both example expressions in the Input section should show
+     +
+  -     /
+a   *  d  e
+   b c
